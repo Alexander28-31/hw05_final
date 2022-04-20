@@ -91,7 +91,6 @@ def post_edit(request, post_id):
 def add_comment(request, post_id):
     """Получение поста."""
     post = get_object_or_404(Post, id=post_id)
-    post_comments = post.comments.all()
     form = CommentForm(request.POST or None)
     if form.is_valid():
         comment = form.save(commit=False)
@@ -123,12 +122,17 @@ def profile_follow(request, username):
     """Подписаться на автора."""
     author = get_object_or_404(User, username=username)
     if request.user != author:
-        Follow.objects.get_or_create(user=request.user, author=author)
+        Follow.objects.get_or_create(
+            user=request.user,
+            author=author
+        )
     return redirect("posts:profile", author)
 
 
 @login_required
 def profile_unfollow(request, username):
     """Дизлайк,отписка."""
-    Follow.objects.filter(user=request.user, author__username=username).delete()
+    Follow.objects.filter(
+        user=request.user,
+        author__username=username).delete()
     return redirect("posts:profile", username)

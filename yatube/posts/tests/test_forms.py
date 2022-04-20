@@ -78,7 +78,8 @@ class PostCreateFormTest(TestCase):
         )
         self.assertRedirects(
             response,
-            reverse('posts:profile', kwargs={'username': self.author.username}))
+            reverse('posts:profile',
+                    kwargs={'username': self.author.username}))
 
         last_post = Post.objects.first()
         self.assertEqual(Post.objects.count(), post_count + 1)
@@ -156,7 +157,8 @@ class PostCreateFormTest(TestCase):
             "username": self.author.username,
         }
         response = self.authorized_client_not_author.post(
-            reverse('posts:profile_follow', kwargs={'username': self.author.username}),
+            reverse('posts:profile_follow',
+                    kwargs={'username': self.author.username}),
             data=form,
             follow=True
         )
@@ -180,7 +182,8 @@ class PostCreateFormTest(TestCase):
             "username": self.author.username,
         }
         response = self.authorized_client_not_author.post(
-            reverse('posts:profile_unfollow', kwargs={'username': self.author.username}),
+            reverse('posts:profile_unfollow',
+                    kwargs={'username': self.author.username}),
             data=form,
             follow=True
         )
