@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block content %}
+  {% load static %}
+  <h1 class="text-center">Привет, я Александр</h1>
+  <br>
+  <div class="text-center">
+    <img src="{% static 'img/111.jpg' %}"
+         width="200"
+         height="200"
+         alt="..."
+         class="rounded">
+  </div>
+  <br>
+  <p class="text-center">
+    Тут я размещу инофрммцию о себе, используя свои умения верстатьbase.
+    Картинки, блоки, элементы бустрап. А может быть, просто напишу несоклько абзацев текста.
+  </p>
+{% endblock %}

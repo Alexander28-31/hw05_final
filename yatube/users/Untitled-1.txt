@@ -1,0 +1,29 @@
+<div class="col">
+    <div class="event">
+      <a href="http://aucentr.ru/pobediteli_bolyshayaperemena/">  <div class=event_picture_101>
+     
+        </div> </a>
+        <div class="event-wrapper-konkurs">
+                <div class="event__content">
+                 
+                      
+                            <div class="event__type__over">КОНКУРС</div>
+                                                  
+                        <a data-pjax="0" href="http://aucentr.ru/pobediteli_bolyshayaperemena/">
+                            <p class="p--big event__title over-title">
+                            Всероссийский конкурс «Большая перемена»
+
+                                         </p>
+                        </a>
+                  
+                </div>
+               
+              
+                    
+</div>
+</div>
+
+
+
+</div>
+</div>
