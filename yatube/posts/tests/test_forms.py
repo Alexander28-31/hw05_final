@@ -147,52 +147,20 @@ class PostCreateFormTest(TestCase):
         self.assertEqual(comment.text, form['text'])
         self.assertEqual(comment.author, self.post.author)
 
-    def test_authorized_client_create_follow(self):
-        """
-        Авторизованный пользователь может подписываться
-        на других пользователей.
-        """
+    def test_guest_client_create_follow(self):
+        """Гость не может отправить форму комментария."""
         follow_count = Follow.objects.count()
         form = {
-            "username": self.author.username,
+            'post': self.post_edit,
+            'author': self.post_edit.author,
+            'text': 'Text_3',
         }
-        response = self.authorized_client_not_author.post(
-            reverse('posts:profile_follow',
-                    kwargs={'username': self.author.username}),
+        response = self.guest_client.post(
+            reverse('posts:add_comment', kwargs={
+                    'post_id': self.post_edit.id}),
             data=form,
             follow=True
         )
-        self.assertRedirects(
-            response,
-            reverse('posts:profile', kwargs={'username': self.author.username})
-        )
-        last_follow = Follow.objects.first()
-        self.assertEqual(Follow.objects.count(), follow_count + 1)
-        self.assertEqual(last_follow.user, self.user)
-
-    def test_authorized_client_create_unfollow(self):
-        """
-        Авторизованный пользователь может  отписаться
-        подписываться от других пользователей.
-        """
-        follow = Follow.objects.create(user=self.user, author=self.author)
-        follow_count = Follow.objects.count()
-        follow.delete()
-        form = {
-            "username": self.author.username,
-        }
-        response = self.authorized_client_not_author.post(
-            reverse('posts:profile_unfollow',
-                    kwargs={'username': self.author.username}),
-            data=form,
-            follow=True
-        )
-        self.assertRedirects(
-            response,
-            reverse('posts:profile', kwargs={'username': self.author.username})
-        )
-        self.assertEqual(Follow.objects.count(), follow_count - 1)
-        self.assertFalse(
-            Follow.objects.filter(author=self.author,
-                                  user=self.user).exists()
-        )
+        self.assertRedirects(response, reverse(
+            'users:login') + f'?next=/posts/{self.post_edit.id}/comment/')
+        self.assertEqual(Follow.objects.count(), follow_count)

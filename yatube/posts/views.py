@@ -96,7 +96,7 @@ def add_comment(request, post_id):
         comment = form.save(commit=False)
         comment.author = request.user
         comment.post = post
-        comment.save()
+        form.save()
         return redirect('posts:post_detail', post_id=post_id)
     context = {
         'form': form,
@@ -111,7 +111,7 @@ def follow_index(request):
     post = Post.objects.filter(
         author__following__user=request.user)
     context = {
-        'title': "Посты в подписке",
+        'post': post,
     }
     context.update(get_page_pages(post, request))
     return render(request, 'posts/follow.html', context)
