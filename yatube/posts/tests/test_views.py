@@ -345,4 +345,4 @@ class FollowFormTest(TestCase):
                                        group=self.group)
         response = self.authorized_client_not_author.get(
             reverse('posts:follow_index'))
-        self.assertNotEqual(response.context    ['page_obj'][0], new_post)
+        self.assertNotEqual(response.context['page_obj'][0], new_post)
