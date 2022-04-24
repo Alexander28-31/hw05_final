@@ -336,13 +336,13 @@ class FollowFormTest(TestCase):
         """
         Пост не появляется на странице если ты не подписан на юзера.
         """
-        Follow.objects.create(user=self.user2, author=self.author)
+        Follow.objects.create(user=self.user2, author=self.user)
         Post.objects.create(text='test_text',
-                            author=self.author,
+                            author=self.user,
                             group=self.group)
         new_post = Post.objects.create(text='test_text',
                                        author=self.author,
                                        group=self.group)
         response = self.authorized_client_not_author.get(
             reverse('posts:follow_index'))
-        self.assertNotEqual(response.context['page_obj'][0], new_post)
+        self.assertNotEqual(response.context    ['page_obj'][0], new_post)
