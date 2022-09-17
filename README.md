@@ -8,7 +8,7 @@
 git clone https://github.com/Alexander28-31/hw05_final.git
 ```
 ```
-cd hw02_community 
+cd hw05_final
 ```
 
 Создайте виртуальное окружение и активируйте его
