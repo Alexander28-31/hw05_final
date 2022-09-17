@@ -1,3 +1,43 @@
-# hw05_final
+# hw05_fina
+## Описание проекта：
+Проект социальной сети Yatube. Позволяет публиковать собственные заметки и размещать к ним фото или любую другую картинку. Также можно смотреть и комментировать заметки других пользователей, подписываться на понравившихся авторов. Написан бэкенд, тесты к нему, созданы шаблоны с css.
+ ## Инструкция по запуске проекта
 
-[![CI](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/yandex-praktikum/hw05_final/actions/workflows/python-app.yml)
+Клонируйте репозиторий и перейдите в него в командной строке:
+```
+git clone https://github.com/Alexander28-31/hw05_final.git
+```
+```
+cd hw02_community 
+```
+
+Создайте виртуальное окружение и активируйте его
+```
+python -m venv venv
+```
+```
+source venv/Scripts/activate
+```
+
+Установите зависимости из файла 
+```
+pip install -r requirements.txt
+```
+
+Создайте миграции и запустите их
+```
+python manage.py makemigrations
+```
+```
+python manage.py migrate
+```
+
+Есть возможность создать суперпользователя
+```
+python manage.py createsuperuser 
+```
+
+Запустите проект
+```
+python manage.py runserver
+```
